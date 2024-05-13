@@ -14,8 +14,9 @@ def click_on_cart_icon(context):
 
 @then("Verify 'Your cart is empty' message is shown")
 def verify_cart_is_empty(context):
-    assert 'Your cart is empty' in context.driver.find_element(By.XPATH, "//h1[text()='Your cart is empty']").text, f'Error! Cart is not empty!'
-    print('Test case passed.')
+    actual_text = context.driver.find_element(By.CSS_SELECTOR, "h1[class*='StyledHeading']").text
+    expected_text = 'Your cart is empty'
+    assert expected_text == actual_text, f'Expected {expected_text}, but got {actual_text}'
 
 @when("Click Sign In")
 def click_sign_in(context):
